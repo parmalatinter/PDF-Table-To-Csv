@@ -2,7 +2,7 @@ import pandas as pd
 import tabula
 import os
 
-## 参考　https://bunkyudo.co.jp/python-tabula-01/inst
+## 参考　https://bunkyudo.co.jp/python-tabula-01/
 ## 複数PDFをCSVに変換(確定申告用)
 ## ヘッダー
 ## お取引日 お取引内容    ご利用額 利用手数料(円)現地通貨額 通貨 レート  Unnamed: 0  Unnamed: 1  確定
