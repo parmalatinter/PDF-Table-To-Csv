@@ -5,8 +5,8 @@
 import glob
 import tkinter as tk
 from tkinter import filedialog
-import sys, os
 from tkinter.filedialog import asksaveasfilename
+from tkinter.ttk import Progressbar
 
 import pandas as pd
 import tabula
@@ -37,23 +37,33 @@ class PdfToCsvApp(tk.Tk):
         self.header_row_count_entry.insert(0, 1)
 
         # 追加ボタンを配置するフレーム
-        btn_frame = tk.Frame(self)
-        btn_frame.pack(pady=10)
+        frame = tk.Frame(self)
+        frame.pack(pady=10)
+
+        # プログレスバー
+        progress_frame = tk.Frame(self)
+        progress_frame.pack()
+
+        # tk.Button(progress_frame, text="To CSV", command=self.to_csv).pack(side="right")
+        # プログレスバー
+        self.progressbar = Progressbar(progress_frame, length=400)
+        self.progressbar.pack(fill="both", expand=True)
 
         # タスクの一覧を表示するリストボックス
         self.task_list = tk.Listbox(self, bd=10)
         self.task_list.pack(fill="both", expand=True)
 
         # ボタンを作成してフォルダ選択関数を呼び出す
-        tk.Button(btn_frame, text="フォルダを選択", command=self.select_folder).pack(side="left")
-        tk.Button(btn_frame, text="To CSV", command=self.to_csv).pack(side="right")
+        tk.Button(frame, text="フォルダを選択", command=self.select_folder).pack(side="left")
+        tk.Button(frame, text="To CSV", command=self.to_csv).pack(side="right")
 
-        # タスクの一覧
-        self.tasks = []
+        # logの一覧
+        self.logs = []
+
 
     # タスクの追加
     def add_log(self, msg):
-        self.tasks.append(msg)
+        self.logs.append(msg)
         self.task_list.insert("end", msg)
 
     # タスクの削除
@@ -88,7 +98,13 @@ class PdfToCsvApp(tk.Tk):
         self.delete_log()
         start_row_index = self.get_header_row_count_value()
 
-        for filename in glob.glob(base_dir + '/*pdf'):
+        files = glob.glob(base_dir + '/*pdf')
+        self.progressbar["maximum"] = len(files)
+
+        for index, filename in enumerate(files):
+            self.progressbar["value"] = index + 1
+            self.update()
+            self.after(1)
 
             dfs = tabula.read_pdf(filename, stream=True, pages='all', java_options="-Dfile.encoding=UTF8")
             count = len(dfs)
