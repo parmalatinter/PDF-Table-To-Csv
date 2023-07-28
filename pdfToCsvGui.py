@@ -20,7 +20,7 @@ class PdfToCsvApp(tk.Tk):
 
     def __init__(self):
         super().__init__()
-        self.title("PDF TO CSV")
+        self.title("PDF Table To CSV")
         self.geometry("800x400")
 
         logo = self.temp_path('favicon.ico')
@@ -62,7 +62,7 @@ class PdfToCsvApp(tk.Tk):
 
         # ボタンを作成してフォルダ選択関数を呼び出す
         tk.Button(frame, text="フォルダを選択", command=self.select_folder).pack(side="left")
-        tk.Button(frame, text="To CSV", command=self.to_csv).pack(side="right")
+        tk.Button(frame, text="CSV書き出し", command=self.to_csv).pack(side="right")
 
         # logの一覧
         self.logs = []
