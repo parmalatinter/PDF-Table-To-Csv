@@ -32,7 +32,7 @@ class PdfToCsvApp(tk.Tk):
         input_row_count_frame = tk.Frame(self)
         input_row_count_frame.pack(pady=10)
         tk.Label(input_directory_frame, text="フォルダ:").grid(row=0, column=0)
-        tk.Label(input_row_count_frame, text="ヘッダー数:").grid(row=0, column=0)
+        tk.Label(input_row_count_frame, text="読み込み開始行:").grid(row=0, column=0)
         self.input_directory_value = tk.StringVar(value='')
         self.directory_entry = tk.Entry(input_directory_frame, textvariable=self.input_directory_value, width=30)
         self.directory_entry.grid(row=0, column=1)
@@ -54,11 +54,11 @@ class PdfToCsvApp(tk.Tk):
         # tk.Button(progress_frame, text="To CSV", command=self.to_csv).pack(side="right")
         # プログレスバー
         self.progressbar = Progressbar(progress_frame, length=400)
-        self.progressbar.pack(fill="both", expand=True)
+        self.progressbar.pack(fill="both", expand=True, pady=10)
 
         # タスクの一覧を表示するリストボックス
         self.task_list = tk.Listbox(self, bd=10)
-        self.task_list.pack(fill="both", expand=True)
+        self.task_list.pack(fill="both", expand=True, pady=10)
 
         # ボタンを作成してフォルダ選択関数を呼び出す
         tk.Button(frame, text="フォルダを選択", command=self.select_folder).pack(side="left")
