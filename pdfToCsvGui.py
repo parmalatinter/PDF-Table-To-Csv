@@ -1,6 +1,6 @@
 # PDF TO CSVアプリ
 # exe アプリ化コマンド
-# pyinstaller --onefile --noconsole --name pdf_to_csv.exe --add-binary "C:\\Users\\parma\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\tabula\\tabula-1.0.5-jar-with-dependencies.jar;./tabula/" gui.py
+# pyinstaller -F --noconsole --name pdf_to_csv.exe --add-binary "C:\\Users\\parma\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\tabula\\tabula-1.0.5-jar-with-dependencies.jar;./tabula/" gui.py
 
 import glob
 import tkinter as tk
@@ -79,18 +79,12 @@ class PdfToCsvApp(tk.Tk):
     def get_header_row_count_value(self):
         input_value = self.header_row_count_entry.get()
         try:
-            numeric_value = float(input_value)
-            print("入力された値:", numeric_value)
             return int(input_value)
         except ValueError:
-            print("有効な数値を入力してください。")
             return 1
 
     def to_csv(self):
         ## 参考　https://bunkyudo.co.jp/python-tabula-01/
-        ## 複数PDFをCSVに変換(確定申告用)
-        ## ヘッダー
-        ## お取引日 お取引内容    ご利用額 利用手数料(円)現地通貨額 通貨 レート  Unnamed: 0  Unnamed: 1  確定
 
         base_df = None
         base_dir = self.directory_entry.get()
