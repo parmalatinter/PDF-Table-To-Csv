@@ -50,6 +50,9 @@ class PdfToCsvApp(tk.Tk):
         # プログレスバー
         progress_frame = tk.Frame(self)
         progress_frame.pack()
+
+        # tk.Button(progress_frame, text="To CSV", command=self.to_csv).pack(side="right")
+        # プログレスバー
         self.progressbar = Progressbar(progress_frame, length=400)
         self.progressbar.pack(fill="both", expand=True, pady=10)
 
@@ -128,7 +131,7 @@ class PdfToCsvApp(tk.Tk):
             if not base_df.empty:
                 filename = asksaveasfilename(filetype=[('CSV files', '*.csv')])
                 if filename:
-                    base_df.to_csv(filename, index=False)
+                    base_df.to_csv(filename, index=False, encoding="shift-jis")
                     self.add_log(f"{filename} にファイルを書き出しました")
         else:
             self.add_log("0件でした")
