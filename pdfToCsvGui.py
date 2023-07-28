@@ -115,7 +115,7 @@ class PdfToCsvApp(tk.Tk):
             self.update()
             self.after(1)
 
-            dfs = tabula.read_pdf(filename, stream=True, pages='all', java_options="-Dfile.encoding=UTF8")
+            dfs = tabula.read_pdf(filename, stream=True, pages='all', guess=True)
 
             if len(dfs) == 0:
                 self.add_log(f'{filename} {0} 件')
