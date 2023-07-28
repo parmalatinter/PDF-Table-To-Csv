@@ -11,6 +11,7 @@ from tkinter.filedialog import asksaveasfilename
 import pandas as pd
 import tabula
 
+
 class PdfToCsvApp(tk.Tk):
 
     def __init__(self):
@@ -75,16 +76,6 @@ class PdfToCsvApp(tk.Tk):
             print("有効な数値を入力してください。")
             return 1
 
-    def get_save_directory(self, base_dir):
-        if getattr(sys, 'frozen', False):
-            # 実行中のPyInstallerバイナリから実行されている場合
-            # PyInstallerのディレクトリパスを取得
-            save_directory = sys._MEIPASS
-        else:
-            save_directory = base_dir
-
-        return save_directory
-
     def to_csv(self):
         ## 参考　https://bunkyudo.co.jp/python-tabula-01/
         ## 複数PDFをCSVに変換(確定申告用)
@@ -112,12 +103,12 @@ class PdfToCsvApp(tk.Tk):
 
         if base_df is not None:
             if not base_df.empty:
-                save_dir = self.get_save_directory(base_dir)
                 filename = asksaveasfilename(filetype=[('CSV files', '*.csv')])
                 if filename:
                     # df.to_csv(filename, header=False, index=False)
                     base_df.to_csv(filename, index=False)
-                    self.add_log(f"{save_dir}/result.csv にファイルを書き出しました")
+                    self.add_log(f"{filename} にファイルを書き出しました")
+
 
 # アプリを起動する
 if __name__ == "__main__":
