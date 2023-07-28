@@ -1,7 +1,6 @@
 # PDF TO CSVアプリ
 # exe アプリ化コマンド
-# pyinstaller -F --noconsole --name pdf_to_csv.exe --add-binary "C:\\Users\\parma\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\tabula\\tabula-1.0.5-jar-with-dependencies.jar;./tabula/" gui.py
-
+# # pyinstaller -F --noconsole --name pdf_to_csv.exe --add-binary "C:\\Users\\parma\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\tabula\\tabula-1.0.5-jar-with-dependencies.jar;./tabula/" --icon favicon.ico gui.py
 import glob
 import tkinter as tk
 from tkinter import filedialog
