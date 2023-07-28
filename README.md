@@ -1,6 +1,6 @@
 # pdfToCsv
 
-## java install
+## Java install
 https://www.java.com/ja/download/ie_manual.jsp
 
 ## exe file
