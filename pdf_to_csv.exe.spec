@@ -8,7 +8,7 @@ a = Analysis(
     ['gui.py'],
     pathex=[],
     binaries=[('C:\\\\Users\\\\parma\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python311\\\\Lib\\\\site-packages\\\\tabula\\\\tabula-1.0.5-jar-with-dependencies.jar', './tabula/')],
-    datas=[],
+    datas=[('favicon.ico', './')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
