@@ -1,6 +1,6 @@
 # PDF TO CSVアプリ
 # exe アプリ化コマンド
-# pyinstaller gui.py --name pdf_to_csv.exe --onefile --noconsole
+# pyinstaller --onefile --noconsole --name pdf_to_csv.exe --add-binary "C:\\Users\\parma\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\tabula\\tabula-1.0.5-jar-with-dependencies.jar;./tabula/" gui.py
 
 import glob
 import tkinter as tk
@@ -86,7 +86,7 @@ class PdfToCsvApp(tk.Tk):
 
         for filename in glob.glob(base_dir + '/*pdf'):
 
-            dfs = tabula.read_pdf(filename, stream=True, pages='all', java_options="-Dfile.encoding=UTF8")
+            dfs = tabula.read_pdf(filename, stream=True, pages='all')
             count = len(dfs)
             self.add_log(f'{filename} {count} 件')
 
@@ -103,7 +103,7 @@ class PdfToCsvApp(tk.Tk):
                 self.add_log(f"{base_dir}/result.csv にファイルを書き出しました")
 
 
-# アプリを起動する
+# Todoアプリを起動する
 if __name__ == "__main__":
     app = PdfToCsvApp()
     app.mainloop()
