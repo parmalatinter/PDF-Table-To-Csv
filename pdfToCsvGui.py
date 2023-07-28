@@ -117,8 +117,8 @@ class PdfToCsvApp(tk.Tk):
 
             dfs = tabula.read_pdf(filename, stream=True, pages='all', java_options="-Dfile.encoding=UTF8")
 
-
             if len(dfs) == 0:
+                self.add_log(f'{filename} {0} 件')
                 continue
 
             df = pd.concat(dfs, axis=0)
@@ -133,6 +133,8 @@ class PdfToCsvApp(tk.Tk):
                 if filename:
                     base_df.to_csv(filename, index=False)
                     self.add_log(f"{filename} にファイルを書き出しました")
+        else:
+            self.add_log("0件でした")
 
 
 # アプリを起動する
