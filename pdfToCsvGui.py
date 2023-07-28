@@ -1,7 +1,10 @@
 # PDF TO CSVアプリ
 # exe アプリ化コマンド
-# # pyinstaller -F --noconsole --name pdf_to_csv.exe --add-binary "C:\\Users\\parma\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\tabula\\tabula-1.0.5-jar-with-dependencies.jar;./tabula/" --icon favicon.ico gui.py
+# pyinstaller -F --noconsole --name pdf_to_csv.exe --add-binary "C:\\Users\\parma\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\tabula\\tabula-1.0.5-jar-with-dependencies.jar;./tabula/" --icon favicon.ico gui.py  --add-data "favicon.ico;./"
+
 import glob
+import os
+import sys
 import tkinter as tk
 from tkinter import filedialog
 from tkinter.filedialog import asksaveasfilename
@@ -17,6 +20,9 @@ class PdfToCsvApp(tk.Tk):
         super().__init__()
         self.title("PDF TO CSV")
         self.geometry("800x400")
+
+        logo = self.temp_path('favicon.ico')
+        self.iconbitmap(logo)
 
         # ラベルとエントリーを配置するフレーム
         input_directory_frame = tk.Frame(self)
@@ -59,13 +65,21 @@ class PdfToCsvApp(tk.Tk):
         # logの一覧
         self.logs = []
 
+    def temp_path(self, relative_path):
+        try:
+            # Retrieve Temp Path
+            base_path = sys._MEIPASS
+        except Exception:
+            # Retrieve Current Path Then Error
+            base_path = os.path.abspath(".")
+        return os.path.join(base_path, relative_path)
 
-    # タスクの追加
+    # logの追加
     def add_log(self, msg):
         self.logs.append(msg)
         self.task_list.insert("end", msg)
 
-    # タスクの削除
+    # logの削除
     def delete_log(self):
         self.task_list.delete(0, tk.END)
 
