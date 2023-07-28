@@ -116,13 +116,14 @@ class PdfToCsvApp(tk.Tk):
             self.after(1)
 
             dfs = tabula.read_pdf(filename, stream=True, pages='all', java_options="-Dfile.encoding=UTF8")
-            count = len(dfs)
-            self.add_log(f'{filename} {count} 件')
+
 
             if len(dfs) == 0:
                 continue
 
             df = pd.concat(dfs, axis=0)
+            count = len(df)
+            self.add_log(f'{filename} {count} 件')
 
             base_df = pd.concat([base_df, df[start_row_index:]], axis=0)
 
@@ -130,7 +131,6 @@ class PdfToCsvApp(tk.Tk):
             if not base_df.empty:
                 filename = asksaveasfilename(filetype=[('CSV files', '*.csv')])
                 if filename:
-                    # df.to_csv(filename, header=False, index=False)
                     base_df.to_csv(filename, index=False)
                     self.add_log(f"{filename} にファイルを書き出しました")
 
