@@ -1,9 +1,8 @@
-# TODOアプリ
+# PDF TO Excelアプリ
 # --------------------------
 import glob
 import tkinter as tk
 from tkinter import filedialog
-
 import pandas as pd
 import tabula
 import os
@@ -85,7 +84,7 @@ class PdfToCsvApp(tk.Tk):
                 self.add_log(f"{base_dir}/result.csv にファイルを書き出しました")
 
 
-# Todoアプリを起動する
+# PDF TO Excelアプリを起動する
 if __name__ == "__main__":
     app = PdfToCsvApp()
     app.mainloop()
