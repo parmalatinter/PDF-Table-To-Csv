@@ -90,7 +90,7 @@ class PdfToCsvApp(tk.Tk):
 
         for filename in glob.glob(base_dir + '/*pdf'):
 
-            dfs = tabula.read_pdf(filename, stream=True, pages='all')
+            dfs = tabula.read_pdf(filename, stream=True, pages='all', java_options="-Dfile.encoding=UTF8")
             count = len(dfs)
             self.add_log(f'{filename} {count} 件')
 
