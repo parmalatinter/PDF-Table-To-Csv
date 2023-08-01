@@ -51,12 +51,11 @@ class PdfToCsvApp(tk.Tk):
         progress_frame = tk.Frame(self)
         progress_frame.pack()
 
-        # tk.Button(progress_frame, text="To CSV", command=self.to_csv).pack(side="right")
         # プログレスバー
         self.progressbar = Progressbar(progress_frame, length=400)
         self.progressbar.pack(fill="both", expand=True, pady=10)
 
-        # タスクの一覧を表示するリストボックス
+        # logの一覧を表示するリストボックス
         self.task_list = tk.Listbox(self, bd=10)
         self.task_list.pack(fill="both", expand=True, pady=10)
 
