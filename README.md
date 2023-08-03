@@ -1,4 +1,4 @@
-# pdfToCsv
+# PDF-Table-To-Csv
 
 ## Java install
 https://www.java.com/ja/download/ie_manual.jsp
