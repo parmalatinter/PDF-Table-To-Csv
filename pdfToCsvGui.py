@@ -1,6 +1,6 @@
 # PDF TO CSVアプリ
 # exe アプリ化コマンド
-# pyinstaller -F --noconsole --name pdf_to_csv.exe --add-binary "C:\\Users\\parma\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\tabula\\tabula-1.0.5-jar-with-dependencies.jar;./tabula/" --icon favicon.ico gui.py  --add-data "favicon.ico;./"
+# pyinstaller -F --noconsole --name pdf_to_csv.exe --add-binary "C:\\Users\\parma\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\tabula\\tabula-1.0.5-jar-with-dependencies.jar;./tabula/" --icon favicon.ico pdfToCsvGui.py  --add-data "favicon.ico;./"
 
 # tabulaでコンソールが表示されるので下記を参考に対応
 # https://stackoverflow.com/questions/63773517/python-tabula-script-keeps-opening-java-exe-window-how-do-i-get-it-to-use-jawaw
